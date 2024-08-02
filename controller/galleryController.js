@@ -137,10 +137,11 @@ module.exports = {
       // data 삭제하기
       const id = req.params.id;
       const deletedData = galleryData.filter((el) => el.id !== Number(id));
+      const confirm = galleryData.filter((el) => el.id === Number(id));
       fs.writeFileSync(filePath, JSON.stringify(deletedData));
 
       // 결과
-      if (deletedData.length) {
+      if (confirm.length !== 0) {
         return res.status(200).json();
       } else {
         return res.status(404).json("일치하는 데이터가 없습니다.");
