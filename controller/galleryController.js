@@ -13,7 +13,7 @@ module.exports = {
     const { page } = req.query;
 
     const data = galleryData.slice(6 * (page - 1), 6 * page);
-    console.log(data);
+    // console.log(data);
 
     const response = {
       data: data,
@@ -28,7 +28,7 @@ module.exports = {
     // json 파일 읽기
     const fileData = fs.readFileSync(filePath);
     const galleryData = JSON.parse(fileData);
-    console.log(typeof galleryData[0].id);
+    // console.log(typeof galleryData[0].id);
 
     // data 필터링
     const id = req.params.id;
@@ -75,7 +75,7 @@ module.exports = {
         id: newId,
         title: title,
         contents: contents,
-        images: [image],
+        images: image,
         createDate: createDate,
       };
 
@@ -84,27 +84,6 @@ module.exports = {
 
       // 결과
       return res.status(201).json(newId);
-    }
-  },
-
-  addGallery: (req, res) => {
-    if (req.body) {
-      // json 파일 읽기
-      const fileData = fs.readFileSync(filePath);
-      const galleryData = JSON.parse(fileData);
-
-      // image 추가하기
-      const id = req.params.id;
-      const { image } = req.body;
-
-      const addImage = galleryData.map((el) => {
-        if (el.id === Number(id))
-          return { ...el, images: [...el.images, image] };
-      });
-      fs.writeFileSync(filePath, JSON.stringify(addImage));
-
-      // 결과
-      return res.status(201).json(id);
     }
   },
 
