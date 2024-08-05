@@ -115,8 +115,8 @@ module.exports = {
 
       // data 삭제하기
       const id = req.params.id;
-      const deletedData = galleryData.filter((el) => el.id !== Number(id));
       const confirm = galleryData.filter((el) => el.id === Number(id));
+      const deletedData = galleryData.filter((el) => el.id !== Number(id));
       fs.writeFileSync(filePath, JSON.stringify(deletedData));
 
       // 결과
