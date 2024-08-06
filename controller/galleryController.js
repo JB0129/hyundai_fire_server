@@ -28,7 +28,6 @@ module.exports = {
     // json 파일 읽기
     const fileData = fs.readFileSync(filePath);
     const galleryData = JSON.parse(fileData);
-    // console.log(typeof galleryData[0].id);
 
     // data 필터링
     const id = req.params.id;
@@ -59,7 +58,7 @@ module.exports = {
       const galleryData = JSON.parse(fileData);
 
       // data 추가하기
-      const { title, contents, image } = req.body;
+      const { title, contents, images } = req.body;
 
       const newId = !galleryData.length
         ? 0
@@ -75,7 +74,7 @@ module.exports = {
         id: newId,
         title: title,
         contents: contents,
-        images: image,
+        images: images,
         createDate: createDate,
       };
 
