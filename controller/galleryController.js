@@ -11,9 +11,7 @@ module.exports = {
     const galleryData = JSON.parse(fileData);
 
     const { page } = req.query;
-
     const data = galleryData.slice(6 * (page - 1), 6 * page);
-    // console.log(data);
 
     const response = {
       data: data,
@@ -82,7 +80,7 @@ module.exports = {
       fs.writeFileSync(filePath, JSON.stringify(newGalleryData));
 
       // 결과
-      return res.status(201).json(newId);
+      return res.status(201).json(newGalleryData);
     }
   },
 
