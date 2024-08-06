@@ -4,7 +4,6 @@ const {
   getGallerys,
   getGallery,
   postGallery,
-  addGallery,
   patchGallery,
   deleteGallery,
 } = require("./../controller/galleryController");
@@ -14,8 +13,6 @@ router.get("/", getGallerys);
 router.get("/:id", getGallery);
 
 router.post("/", postGallery);
-
-router.patch("/:id/add", addGallery);
 
 router.patch("/:id", patchGallery);
 

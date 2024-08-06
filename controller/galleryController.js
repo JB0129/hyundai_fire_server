@@ -38,7 +38,7 @@ module.exports = {
     const next = galleryData[index + 1];
 
     // 결과
-    if (data.length) {
+    if (data.length > 0) {
       const response = {
         data: data[0],
         pageInfo: {
@@ -79,8 +79,8 @@ module.exports = {
         createDate: createDate,
       };
 
-      galleryData.push(newData);
-      fs.writeFileSync(filePath, JSON.stringify(galleryData));
+      const newGalleryData = [...galleryData, newData];
+      fs.writeFileSync(filePath, JSON.stringify(newGalleryData));
 
       // 결과
       return res.status(201).json(newId);
